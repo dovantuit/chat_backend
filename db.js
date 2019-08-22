@@ -22,14 +22,44 @@ db.authenticate()
 
 
 
+const roomlist = db.define('roomlist',{
+    room_id: sequelize.STRING,
+    room_name: sequelize.STRING,
+    user_id: sequelize.STRING,
+
+
+})
+
+const messages = db.define('messages',{
+    createdAt: sequelize.STRING,
+    id: sequelize.STRING,
+    is_read: sequelize.STRING,
+    text: sequelize.STRING,
+    user_id: sequelize.STRING
+})
+
+
+
 const user = db.define('user', { // model : table in database
-    username: sequelize.STRING,
-    password: sequelize.STRING,
+    avatar: sequelize.STRING,
+    emai: sequelize.STRING,
+    name: sequelize.STRING,
+    sub_id: sequelize.STRING,
+    user_id: sequelize.STRING,
+   
 })
 
 
 
 db.sync()
+
+
+
+roomlist.create({
+    room_id: '1234',
+    room_name: 'zalo',
+    user_id: '123',
+}).then(user=>console.log(user.get({plain: true})))
 
 // update database 
 
@@ -38,7 +68,7 @@ db.sync()
 //     password:'1',
 // }).then(user=>console.log(user.get({plain: true})))
 
-// tao nhieu
+// tạo nhiều dòn trong table
 // user.bulkCreate([
 //     {username:"sdsf",password:"123"},
 //     {username:"tsasadfdfin",password:"123"}
@@ -46,7 +76,7 @@ db.sync()
 // ]).then(arr_user=>arr_user.forEach(user =>console.log(user.get({plain: true}))))
 
 
-// xoa
+// xóa table
 
 // user.destroy({
 //     where:{
@@ -55,7 +85,7 @@ db.sync()
 // })
 // .then(row =>console.log(row))
 
-// update
+// sửa table
 
 // user.update({
 //     password:"1111"
@@ -64,15 +94,17 @@ db.sync()
 // })
 // .then(row =>console.log(row))
 
-
+// tìm 1 phần tử
 // user.findOne({raw: true})
 // .then(user=>console.log(user))
 
-
+// tìm tất cả
 // user.findAll({raw: true})
 // .then(arr_user=>arr_user.forEach(user=>console.log(user)))
 
-user.findById(5,{raw: true})
-.then(user=>console.log(user))
+
+// findById
+// user.findById(5,{raw: true})
+// .then(user=>console.log(user))
 
 
